@@ -133,7 +133,10 @@ over year.
 
 ## Running (fill in as each block lands)
 ```bash
-docker compose up -d                       # Postgres + pgvector
+docker compose up -d                       # Postgres + pgvector on localhost:5433
+uv sync                                    # create .venv and install dependencies
 uv run uvicorn backend.app.main:app --reload
+curl localhost:8000/health                 # {"status":"ok","db":"ok"}
+uv run pytest                              # needs the database running
 cd frontend && npm run dev
 ```
